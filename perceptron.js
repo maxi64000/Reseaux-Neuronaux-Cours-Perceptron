@@ -18,7 +18,12 @@ function Perceptron(threshold) {
             }
         }
 
-        return exit;
+        if (exit >= threshold) {
+            return exit;
+        }
+        else {
+            return 0;
+        }
     }
 
     return {

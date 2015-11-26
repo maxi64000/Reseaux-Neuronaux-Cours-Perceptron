@@ -81,4 +81,22 @@ describe ("Perceptron", function() {
         expectResult(neurones, output);
     });
 
+    it ("should output 0 if the sum of neurones exits < threshold", function() {
+        var neurones = [];
+        neurones.push(new Neurone(0.5, 0.25));
+        neurones.push(new Neurone(0.5, 0.25));
+
+        expectResult(neurones, 0);
+    });
+
+    it ("should output the sum of neurones exits if the sum of neurones exits >= threshold", function() {
+        var neurones = [];
+        neurones.push(new Neurone(0.5, 0.5));
+        neurones.push(new Neurone(0.5, 0.5));
+
+        var output = (neurones[0].input * neurones[0].weight) + (neurones[1].input * neurones[1].weight);
+
+        expectResult(neurones, output);
+    });
+
 });
