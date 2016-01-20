@@ -1,4 +1,4 @@
-function Perceptron(threshold) {
+function Perceptron(threshold, outputCount) {
 
     function neuroneIsActive(neurone) {
         if (neurone.input >= threshold) {
@@ -10,20 +10,31 @@ function Perceptron(threshold) {
     }
 
     function process(neurones) {
-        var exit = 0;
+        var exit = [];
+        for (var i = 0; i < outputCount; i++) {
+            exit[i] = 0;
+        }
 
         for (var i = 0; i < neurones.length; i++) {
             if (neuroneIsActive(neurones[i])) {
-                exit = exit + (neurones[i].input * neurones[i].weight);
+                if (outputCount > 1) {
+                    for (var j = 0; j < outputCount; j++) {
+                        exit[j] = exit[j] + (neurones[i].input * neurones[i].weight[j]);
+                    }
+                }
+                else {
+                    exit[0] = exit[0] + (neurones[i].input * neurones[i].weight);
+                }
             }
         }
 
-        if (exit >= threshold) {
-            return exit;
+        for (var i = 0; i < exit.length; i++) {
+            if (exit[i] < threshold) {
+                exit[i] = 0;
+            }
         }
-        else {
-            return 0;
-        }
+
+        return exit;
     }
 
     return {
