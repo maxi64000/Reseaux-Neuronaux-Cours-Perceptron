@@ -1,4 +1,4 @@
-# Cours I4 - Réseaux neuronaux
+# Cours I4 - EPSI - Réseaux neuronaux
 
 Cours de l'EPSI Bordeaux, sur les réseaux neuronaux.
 
